@@ -13,3 +13,22 @@ Foreign Exchange Currency converter Web App to help you convert USD (with specif
 1. Yarn
 1. Docker
 
+### Setup Development Mode
+
+```sh
+npm start / yarn start
+```
+
+### Setup Production Mode (Docker Build + Run)
+
+```sh
+npm run docker-build
+npm run docker-run
+```
+
+### Testing (Puppeteer)
+
+```
+npm start / yarn start
+npm test / yarn test
+```
