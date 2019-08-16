@@ -18,6 +18,10 @@ Foreign Exchange Currency converter Web App to help you convert USD (with specif
 ```sh
 npm start / yarn start
 ```
+### Create Docker Image Developmenr mode
+```sh
+    npm run docker-image / yarn run docker-image
+```
 
 ### Setup Production Mode (Docker Build + Run)
 

@@ -21,7 +21,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "jest",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "docker-build": "docker container run -it -v $(PWD):/app react:app build",
+    "docker-run": "docker run -v ${PWD}:/app -v /app/node_modules -p 3001:3000 --rm react:app",
+    "docker-image": "docker build -t react:app ."
   },
   "eslintConfig": {
     "extends": "react-app"
