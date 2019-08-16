@@ -65,6 +65,38 @@ handleToggle() {
 	})
 }
 
+renderListCurrency() {
+	const { currencyRate } = this.props;
+	const { rates } = currencyRate;
+	const listCurrency = this.state.currencyList
+	return(
+		<div>
+		{
+			listCurrency.length > 0 ?
+				listCurrency.map((currency, i) => {
+        const convertedValue = rates[currency] * this.state.currentAmount;
+        const displayValue = formatValue(convertedValue);
+
+        return (
+          <div className="converted-detail" key={i}>
+            <div className="detail-container">
+              <div className="amount-container">
+                <div className="amount-detail currency-code">
+                  {currency}
+                </div>
+                <div className="amount-detail">{displayValue}</div>
+              </div>
+              <div className="currency-name">{dictionary(currency)}</div>
+              <div className="currency-detail">{`${this.state.currentAmount} ${config.baseCurrency} = ${currency} ${displayValue}`}</div>
+            </div>
+            <div className="delete-box" onClick={() => this.handleRemoveCurrency(i)}>( - )</div>
+          </div>
+        );
+			}) : ''
+		}
+		</div>
+		);
+}
 
 render() {
 		// const { currencyRate } = this.props;
@@ -74,14 +106,15 @@ render() {
 				<div className="container-fluid currency-box">
 					<div className="col-md-6 offset-md-3">
 						<div className=" mb-4 header-currency">
-							<div className="justify-content-between d-flex">
+							<div className="d-flex">
 								<p className="align-items-center base-currency">USD</p>
-								<p className="align-items-center base-currency">- United Stated Dollar</p>
+								<p className="align-items-center">- United Stated Dollar</p>
 							</div>
 							<div className="justify-content-between d-flex">
 								<p className="align-items-center f-bold">{config.baseCurrency}</p>
 								<input  className="input-amount" type="number" name="currentAmount" value={this.state.currentAmount} onChange={this.handleOnChange}></input>
 							</div>
+							{ this.renderListCurrency() } 
 							{
 								this.state.isInputActive ? (
 									<div className="row">
@@ -98,7 +131,7 @@ render() {
 											<option value="MYR">MYR</option>
 											<option value="KRW">KRW</option>
 										</select>
-										<button className="submit-convert mb-1" onClick={this.handleAddCurrencny}>Submit</button>
+										<button className="submit-convert mb-1 input" onClick={this.handleAddCurrencny}>Submit</button>
 									</div>
 								) : (
 									<div className="input-toggle" onClick={this.handleToggle}>(+) add more currencies</div>
