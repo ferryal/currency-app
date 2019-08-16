@@ -32,7 +32,6 @@ export function fetchCurrencyRate() {
     }).then((res) => {
       if (res.status === 200) {
         const response = res.data;
-        // toast.success('.');
         dispatch(fetchSuccess(response));
       } else {
         dispatch(fetchFailed());
